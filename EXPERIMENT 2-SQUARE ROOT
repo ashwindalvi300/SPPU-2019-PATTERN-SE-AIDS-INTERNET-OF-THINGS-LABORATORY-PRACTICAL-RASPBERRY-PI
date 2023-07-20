@@ -1,0 +1,5 @@
+#Write a program that asks the user for a number and outputs the number squared that is entered
+
+a = int(input("Enter the number = "))
+n = a**(1/2)
+print("The square root of the number is : ",n)
