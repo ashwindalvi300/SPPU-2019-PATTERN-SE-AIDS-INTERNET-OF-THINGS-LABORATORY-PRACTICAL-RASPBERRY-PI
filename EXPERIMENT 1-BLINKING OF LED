@@ -1,4 +1,4 @@
-#Write a program to control LED (One or more ON/OFF). Or Blinking
+#Write a program using Raspberry Pi to control LED (One or more ON/OFF). Or Blinking
 
 import time
 import RPi.GPIO as GPIO
