@@ -1,0 +1,61 @@
+# Create a program so that when the user enters ‘b’ two LEDs will blink, ‘g’ the is next two LEDs 
+# will illuminate and ‘y’ the four Led will illuminated.
+
+import time
+import RPi.GPIO as GPIO
+
+TRUE=1
+led1=20
+led2=21
+led3=22
+led4=23
+led5=24
+led6=25
+led7=26
+led8=27
+
+my_led=[led1,led2,led3,led4,led5,led6,led7,led8]
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(led1,GPIO.OUT)
+GPIO.setup(led2,GPIO.OUT)
+GPIO.setup(led3,GPIO.OUT)
+GPIO.setup(led4,GPIO.OUT)
+GPIO.setup(led5,GPIO.OUT)
+GPIO.setup(led6,GPIO.OUT)
+GPIO.setup(led7,GPIO.OUT)
+GPIO.setup(led8,GPIO.OUT)
+
+def ledstate(led,a):
+    GPIO.output(my_led[led],a)
+    
+def off_all():
+    for i in range (0,8):
+        ledstate(i,1)
+    
+try:
+    off_all()
+    while TRUE:
+        inp = input("Enter your Choice : ")
+        if inp == "y":
+            off_all()
+            GPIO.output(led1, 0)
+            GPIO.output(led2, 0)
+
+        elif inp == "g":
+            off_all()
+            GPIO.output(led3, 0)
+            GPIO.output(led4, 0)
+
+        elif inp == "r":
+            off_all()
+            GPIO.output(led5, 0)
+            GPIO.output(led6, 0)
+
+        else:
+            print('Invalid Input')
+            off_all()
+
+except KeyboardInterrupt:
+    RUNNING=False
+    print('Quit')
+    GPIO.cleanup()
