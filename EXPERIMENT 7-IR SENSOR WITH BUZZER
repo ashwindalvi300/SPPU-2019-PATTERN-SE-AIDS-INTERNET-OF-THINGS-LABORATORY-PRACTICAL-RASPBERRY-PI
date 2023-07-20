@@ -1,0 +1,58 @@
+#Understanding the connectivity of Raspberry-Pi /Beagle board circuit / Arduino with IR Sensor . 
+#Write an Application to detect obstacle and notify user using LED’s
+
+import time
+import RPi.GPIO as GPIO
+
+RUNNING = True
+
+HIGH = 1
+LOW = 0
+DetectPin = 5
+'''Buzzer = 3
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(Buzzer, GPIO.OUT)
+
+def BuzzerRing(val):
+    GPIO.output(Buzzer, val)'''
+
+def InitSystem():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setup(DetectPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+    return
+
+def DetectPerson():
+    while True:
+        input_state = GPIO.input(DetectPin)
+        time.sleep(0.3)
+        if input_state == 0:
+            return LOW
+        else:
+            
+            '''BuzzerRing(0)
+            time.sleep(0.3)
+            
+            BuzzerRing(1)'''
+            
+            
+            return HIGH
+        
+        
+try:
+    print("Counting using IR LED")
+    print("---------------------------------")
+    InitSystem()
+    count = 0
+    while RUNNING:
+        state = DetectPerson()
+        if state == HIGH:
+            count+=1
+            print("Person count = ",count)
+            
+except KeyboardInterrupt:
+    RUNNING = False
+    print("Stopping elevator")
+    
+finally:
+    GPIO.cleanup
